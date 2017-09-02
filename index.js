@@ -5,7 +5,7 @@ if(!process.env.LIB_MONKEY_SEED){
    process.env.LIB_MONKEY_SEED = Math.round(Math.random() * 10000000);
 }
 
-console.log(colors.green('Runnig With Seed', process.env.LIB_MONKEY_SEED));
+console.log(colors.green('lib-monkey seed', process.env.LIB_MONKEY_SEED));
 
 
 function exitHandler(options, err) {
