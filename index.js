@@ -1,2 +1,2 @@
 
-module.exports = require('./dist/a'); 
+module.exports = require('./dist/monkey'); 
