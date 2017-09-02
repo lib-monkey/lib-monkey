@@ -57,5 +57,5 @@ typings/
 # dotenv environment variables file
 .env
 
-# Dist Folder for the library
-dist
+# UnCompiled Code from lib
+lib
