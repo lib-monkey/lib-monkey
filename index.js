@@ -2,7 +2,7 @@
 var colors = require('colors/safe');
 
 if(!process.env.LIB_MONKEY_SEED){
-   process.env.LIB_MONKEY_SEED = Math.round(Math.random() * 10000000);
+   process.env.LIB_MONKEY_SEED = Math.round(Math.random() * Math.pow(10, 10));
 }
 
 console.log(colors.green('lib-monkey seed', process.env.LIB_MONKEY_SEED));
