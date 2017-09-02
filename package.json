@@ -1,0 +1,43 @@
+{
+  "name": "lib-monkey",
+  "version": "0.1.0",
+  "description": "Random Integration Testing for NodeJS",
+  "main": "index.js",
+  "bin": {
+    "lib-monkey": "./bin/lib-monkey"
+  },
+  "scripts": {
+    "build": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lib-monkey/lib-monkey.git"
+  },
+  "keywords": [
+    "testing",
+    "monkey",
+    "integration",
+    "random",
+    "lib",
+    "library",
+    "cool"
+  ],
+  "author": "Team Of Monkeys",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lib-monkey/lib-monkey/issues"
+  },
+  "homepage": "https://github.com/lib-monkey/lib-monkey#readme",
+  "maintainers": [
+    {
+      "name": "Dmitry Dodzin",
+      "email": "d.dodzin@gmail.com"
+    }
+  ],
+  "dependencies": {
+    "chance": "^1.0.11",
+    "colors": "^1.1.2",
+    "commander": "^2.11.0"
+  },
+  "devDependencies": {}
+}

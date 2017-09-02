@@ -1,0 +1,60 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var pkg = require('../package.json');
+var program = require('commander');
+var exec = require('child_process').exec;
+var colors = require('colors/safe');
+
+
+program
+  .version(pkg.version)
+  .usage('[options] <cmd ...>')
+  .option('-s, --seed <n>', 'Seed', parseInt)
+  .parse(process.argv);
+
+if(program.seed){
+  console.log(colors.green('Runnig With Seed', program.seed));
+
+  process.env.LIB_MONKEY_SEED = program.seed;
+}
+
+executeComand(process.argv.splice(2));
+
+function executeComand(args) {
+  function isOption(value){
+    var result = false;
+    program.options.forEach(function(option) {
+      if(option.short === value || option.long === value){
+        result = true;
+      }
+    });
+    return result;
+  }
+
+  var command = '';
+
+  for(var i = 0; i < args.length; i++){
+    if(args[i][0] === '-' && isOption(args[i])){
+      i++;
+    } else {
+      command = args.splice(i).join(' ');
+      break;
+    }
+  }
+
+
+  exec(command, function(err, stdout, stderr) {
+    if (err) {
+      console.log(colors.red('lib-monkey Coulden\'t Execute the Command'));
+      console.log(err);
+      console.log(stdout);
+      console.log(stderr);
+      return;
+    }
+
+    console.log(stdout);
+    console.log(stderr);
+  });  
+}
