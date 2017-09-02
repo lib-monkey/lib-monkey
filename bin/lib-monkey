@@ -4,7 +4,7 @@
 
 var pkg = require('../package.json');
 var program = require('commander');
-var exec = require('child_process').exec;
+var spawn = require('child_process').spawn;
 var colors = require('colors/safe');
 
 
@@ -15,8 +15,6 @@ program
   .parse(process.argv);
 
 if(program.seed){
-  console.log(colors.green('Runnig With Seed', program.seed));
-
   process.env.LIB_MONKEY_SEED = program.seed;
 }
 
@@ -39,22 +37,11 @@ function executeComand(args) {
     if(args[i][0] === '-' && isOption(args[i])){
       i++;
     } else {
-      command = args.splice(i).join(' ');
+      command = args.splice(i);
       break;
     }
   }
 
-
-  exec(command, function(err, stdout, stderr) {
-    if (err) {
-      console.log(colors.red('lib-monkey Coulden\'t Execute the Command'));
-      console.log(err);
-      console.log(stdout);
-      console.log(stderr);
-      return;
-    }
-
-    console.log(stdout);
-    console.log(stderr);
-  });  
-}
+  if(command)
+    spawn(command[0], command.splice(1), {stdio: "inherit"});
+};
