@@ -2,14 +2,14 @@
 var colors = require('colors/safe');
 
 if(!process.env.LIB_MONKEY_SEED){
-   process.env.LIB_MONKEY_SEED = Math.round(Math.random() * 10000000);
+   process.env.LIB_MONKEY_SEED = Math.round(Math.random() * Math.pow(10, 10));
 }
 
-console.log(colors.green('Runnig With Seed', process.env.LIB_MONKEY_SEED));
+console.log(colors.green('lib-monkey seed', process.env.LIB_MONKEY_SEED));
 
 
 function exitHandler(options, err) {
-  console.log(colors.green('lib-monket seed', process.env.LIB_MONKEY_SEED));  
+  console.log(colors.green('lib-monkey seed', process.env.LIB_MONKEY_SEED));  
   if (err) console.log(err.stack);
   if (options.exit) process.exit();
 }

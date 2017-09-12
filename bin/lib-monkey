@@ -43,5 +43,5 @@ function executeComand(args) {
   }
 
   if(command)
-    spawn(command[0], command.splice(1), {stdio: "inherit"});
-};
+    spawn(command[0], command.splice(1), { shell: true, stdio: "inherit" });
+}
