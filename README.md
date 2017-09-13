@@ -76,7 +76,13 @@ Jokers.BooleanJoker.likelihood(70) => chance.bool({ likelihood: 70 })
 
 ```
 
+Currently there are the following jokers:
 
+ - BooleanJoker
+ - CharJoker
+ - FloatJoker
+ - IntegerJoker
+ - StringJoker
 
 ## Roadmap
 This project should co-exist with all the avialbe test runners like mocha or jasmin and be used as a tool for random value testing
