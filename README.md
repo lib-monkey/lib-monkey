@@ -5,11 +5,19 @@ When there is a need to test code with random values
 
 
 ## Installation
-
+```bash
   npm install lib-monkey
+```
 
 ### cli
+```bash
   npm install -g lib-monkey
+
+
+  lib-monkey -s [seed] [CMD]
+```
+
+
 
 ## Getting Started
 
@@ -23,21 +31,26 @@ const { Jokers, Runners } = require('lib-monkey');
 let fn_runner = Runners.FunctionRunner();
 
 
-fn_runner.register(a => {
-    
-    // Do some tests with a as ranom value
-    // Will accept sync or prommise based results
+fn_runner
+  .register
+  .params(Jokers.IntegerJoker.min(0).max(10))
+  .eval(a => {
+      
+      // Do some tests with a as ranom value
+      // Will accept sync or prommise based results
 
-}, Jokers.IntegerJoker.min(0).max(10));
+  })
 
+fn_runner
+  .register
+  .params(Jokers.IntegerJoker.min(0).max(10))
+  .eval((a, done) => {
+      
+      // Do some tests with a as ranom value
 
-fn_runner.register((a, done) => {
-    
-    // Do some tests with a as ranom value
+      // Call done after async tests
 
-    // Call done after async tests
-
-}, Jokers.IntegerJoker.min(0).max(10));
+  });
 
 
 fn_runner.exec(n_times, concurrency)
@@ -46,6 +59,25 @@ fn_runner.exec(n_times, concurrency)
 
 
 ```
+
+## ```Jokers```
+
+There are multipe jokers in library and they have multiple modifyers.
+
+There is the base modifyer ```nullable(boolean|chance|null == true)``` and all the other modifyers are based of of [Chance][chance] library
+
+#### Example
+
+```javascript
+
+Jokers.IntegerJoker.min(0).max(10) => chance.integer({ min:0, max: 10 })
+
+Jokers.BooleanJoker.likelihood(70) => chance.bool({ likelihood: 70 })
+
+```
+
+
+
 ## Roadmap
 This project should co-exist with all the avialbe test runners like mocha or jasmin and be used as a tool for random value testing
 
@@ -59,6 +91,7 @@ This project should co-exist with all the avialbe test runners like mocha or jas
 
 [MIT][license] © [Lib Monkey Team][author]
 
+[chance]: https://www.npmjs.com/package/chance
 
 [license]: LICENSE
 
