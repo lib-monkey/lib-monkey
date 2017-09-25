@@ -1,4 +1,11 @@
 
 require('./dist/console.bindings');
 
-let lm = global.lm = require('./safe');
+let monkey = require('./dist/monkey');
+
+let lm = { };
+
+monkey.JokerCreator.create(lm);
+monkey.RunnerCreator.create(lm);
+
+module.exports = lm;
