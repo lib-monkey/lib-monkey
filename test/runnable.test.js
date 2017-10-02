@@ -27,12 +27,14 @@ describe('Runnable', () => {
 
   it('Sync', () => {
     let params = [11];
+    let returnValue = "Working";
     let fn = (value) => {
       expect(value).to.equal(params[0]);
+      return returnValue;
     };
 
     let runable = new Runable(fn, params);
-    return runable.call().should.eventually.be.fulfilled;
+    return runable.call().should.eventually.have.property('value', returnValue);
   });
 
   it('Sync fail', () => {
@@ -46,13 +48,14 @@ describe('Runnable', () => {
   });
 
   it('Promise Async', () => {
+    let returnValue = 'Some Value';
     let fn = () => 
       new Promise((resolve, reject) => {
-        setTimeout(() => resolve());
+        setTimeout(() => resolve(returnValue));
       });
 
     let runable = new Runable(fn);
-    return runable.call().should.eventually.be.fulfilled;
+    return runable.call().should.eventually.have.property('value', returnValue);
   });
 
   it('Promise Async Fail', () => {
@@ -66,12 +69,13 @@ describe('Runnable', () => {
   });
 
   it('Callback Async', () => {
+    let returnValue = 'Some Value';
     let fn = (done) => {
-      setTimeout(() => done());
+      setTimeout(() => done(null, returnValue));
     };
 
     let runable = new Runable(fn);
-    return runable.call().should.eventually.be.fulfilled;
+    return runable.call().should.eventually.have.property('value', returnValue);
   });
 
   it('Callback Sync Fail', () => {
