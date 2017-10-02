@@ -123,7 +123,7 @@ describe('Runnable', () => {
 
     let extend = { hey: 'ho' };
 
-    return runable.call(extend)
+    return runable.call(null, extend)
       .should.eventually.be.rejected
       .then(res => {
         expect(res).to.nested.include({'err.message': 'Hey'});

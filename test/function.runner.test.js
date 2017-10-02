@@ -8,15 +8,12 @@ chai.should();
 import Runable from '../lib/common/runable';
 import FunctionRunner from '../lib/runner/function.runner';
 
-const randomiser = {};
-
 describe('FunctionRunner', () => {
 
   it('Initialisation', () => {
     let runnable = { };
     expect(() => new FunctionRunner()).to.not.throw();
-    expect(() => new FunctionRunner(randomiser)).to.not.throw();
-    expect(() => new FunctionRunner(randomiser, runnable)).to.not.throw();
+    expect(() => new FunctionRunner(runnable)).to.not.throw();
   });
 
   it('No Runner Should Throw', () => {
@@ -28,7 +25,7 @@ describe('FunctionRunner', () => {
 
     let runable = { call: sinon.spy() };
 
-    let fnr = new FunctionRunner(null, runable);
+    let fnr = new FunctionRunner(runable);
 
     return fnr.exec(200).should.be.fulfilled
       .then(() => expect(runable.call.callCount).to.equal(200));
@@ -37,7 +34,7 @@ describe('FunctionRunner', () => {
   it('Async Exec', () => {
     let runable = { call: sinon.stub().returns(Promise.resolve()) };
 
-    let fnr = new FunctionRunner(null, runable);
+    let fnr = new FunctionRunner(runable);
 
     return fnr.exec(200, 10).should.be.fulfilled
       .then(() => expect(runable.call.callCount).to.equal(200));
@@ -57,7 +54,7 @@ describe('FunctionRunner', () => {
       ) 
     };
 
-    let fnr = new FunctionRunner(null, runable);
+    let fnr = new FunctionRunner(runable);
 
     return fnr.exec(1).should.be.rejected
       .then(err => {
@@ -74,7 +71,7 @@ describe('FunctionRunner', () => {
       ) 
     };
 
-    let fnr = new FunctionRunner(null, runable);
+    let fnr = new FunctionRunner(runable);
 
     return fnr.exec(1).should.be.rejectedWith(Error, 'Internal lib-monkey Error');
   });
