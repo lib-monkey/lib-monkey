@@ -45,7 +45,7 @@ monkey
 monkey
   .fnr
   .params(monkey.int.min(0).max(10))
-  .eval((a, done) => {
+  .register((a, done) => {
       
       // Do some tests with a as ranom value
 
@@ -81,6 +81,28 @@ Currently there are the following jokers:
  - paragraph, sentence, syllable, word
  - pick (from array), array (of jokers), map, object (deep map)
 
+
+## ```Runners```
+
+Currently there are two runners avialbe, ```FunctionRunner - fnr``` and ```PipedRunner - pnr```
+
+FunctionRunner is designed to run a single function multipe times while the PipedRunner is designed to run several function and piping the result from one to the other
+
+#### Example
+
+```javascript
+
+  monkey
+    .pnr
+    .params(monkey.natural.max(10))
+    .register(num => num + 1)
+    .register(num => num + 1)
+    .register(num => num + 1)
+    .params(monkey.syllable)
+    .register((num, randomSylibalValue) => console.log('Will be the original num + 3', num, randomSylibalValue))
+    .exec(3)
+
+```
 
 ## Roadmap
 This project should co-exist with all the avialbe test runners like mocha or jasmin and be used as a tool for random value testing
