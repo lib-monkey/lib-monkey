@@ -96,6 +96,15 @@ describe('Runnable', () => {
     return runable.call().should.eventually.be.rejected;
   });
 
+  it('Returned Args', () => {
+    let someValue = 'Some Value';
+    let fn = sinon.stub().returns(someValue);
+
+    let runable = new Runable(fn);
+    return runable.call()
+      .should.eventually.have.property('value', someValue);
+  });
+
   it('Extract Joker Params', () => {
     let fakeChance = { bool: () => false };
     let joker_value = 'Some Value';
@@ -109,6 +118,22 @@ describe('Runnable', () => {
     return runable.call()
       .should.eventually.be.fulfilled
       .then(() => assert(fn.calledWith(joker_value), 'Joker value wasn\'t called'));
+  });
+
+  it('Extract Joker Params With Args', () => {
+    let jokerValue = 'Some Value';
+    let someValue = 'Some Value 2';
+    let fakeChance = { bool: () => false };
+    let joker = new Joker(fakeChance);
+    sinon.stub(joker, 'getValue').returns(jokerValue);
+
+    let params = [joker];
+    let fn = sinon.spy();
+
+    let runable = new Runable(fn, params);
+    return runable.call(someValue)
+      .should.eventually.be.fulfilled
+      .then(() => assert(fn.calledWith(someValue, jokerValue), 'Joker value wasn\'t called with the right params'));
   });
 
   it('Internal Error', () => {
