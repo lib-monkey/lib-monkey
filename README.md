@@ -1,4 +1,7 @@
 # lib-monkey
+
+[![Travis](https://img.shields.io/travis/lib-monkey/lib-monkey.svg)](https://travis-ci.org/lib-monkey/lib-monkey) [![David](https://img.shields.io/david/lib-monkey/lib-monkey.svg)](https://david-dm.org/lib-monkey/lib-monkey) [![npm](https://img.shields.io/npm/v/lib-monkey.svg)](https://www.npmjs.com/package/lib-monkey)
+
 Monkey Testing for libraries
 
 When there is a need to test code with random values
