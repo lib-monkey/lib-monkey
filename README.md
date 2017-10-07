@@ -82,7 +82,7 @@ Currently there are the following jokers:
  - bool, char, float, int, letter, natural, string
  - date, hammertime, timestamp, timezone
  - paragraph, sentence, syllable, word
- - pick (from array), array (of jokers), map, object (deep map)
+ - pick (from array), array (of jokers), map, object (deep map), typed (of specific type)
 
 
 ## ```Runners```
