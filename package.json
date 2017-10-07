@@ -10,7 +10,6 @@
     "clean": "rm -rf dist",
     "prebuild": "npm run clean",
     "build": "babel lib --out-dir dist",
-    "prepublish": "npm test && npm run build",
     "test": "mocha --compilers js:babel-core/register",
     "cover": "cross-env NODE_ENV=test nyc mocha",
     "coveralls": "npm run cover && cat ./coverage/lcov.info | coveralls"
