@@ -1,0 +1,20 @@
+sudo: false
+
+language: node_js
+cache: node_modules
+
+node_js:
+  - stable
+  
+install:
+  - npm install
+after_success:
+  - npm run coveralls
+
+deploy:
+  provider: npm
+  email: d.dodzin@gmail.com
+  api_key:
+    secure: gAkRCJ8q5atTCXphWV0lPdvPDsj0jgzgOombH5OVxBCPnXkck1O9rO8RAC1yIvfsyALi6MmFIHLxa+Ihpul9Txnap2W169RGCUqNMJenHub9Q1gw1GPu/pQALTB4eX+pb0PewIkQgUivNcpq4bVuDelJbhLzOjytc74Oq/g68+yVgcvmYW8qbeOaiyqmSjdxj4pJqwRIr3gOD9g6bEQmBHQFbbCj/dci4MpS8+1d1Y/eUHaxSQ175hHHDgZ8sLj/pCOzB1CQm82UVW8GT+lsciMrfG+v+IZPT1dipOBgnmw5M2jFXx8zWbDi+kcqYRcTS/A9Ut0LBXel1X/V+ZaLNTUXYKJtb0MVJOCZNBu+5ls+N3TBNP81Yh+3Paz89FCO2SUIEBAop51/hMOAJ9HB2z5cxYdhLjtIalJ/fbFV3qa4/zwr+/75EAmy0HZs/koUHdSBxdJ9r6HQZIKdFYJaKq1E/05/m0ZH4CrEljjqUGRMQjNXun3U2Y1vkbiHEEFZSUPdd354Qhk9qvVZflSlwHkLCKN02B9rIOZ9F22VoDk1eCX4/TKpGt16wPrMxbY88AJdPWRzS6cokQgGkam3L123b0SfMQFYDsKqjJO0KNFXlBfC/fKvXF8Pvni3ixCvsLdnLTqoNoCVnURFVEEheXZ1Dm/R9h7TSb8OUCZxFx8=
+  on:
+    branch: master

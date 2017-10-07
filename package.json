@@ -1,6 +1,6 @@
 {
   "name": "lib-monkey",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Random Integration Testing for NodeJS",
   "main": "index.js",
   "bin": {
@@ -12,7 +12,8 @@
     "build": "babel lib --out-dir dist",
     "prepublish": "npm test && npm run build",
     "test": "mocha --compilers js:babel-core/register",
-    "cover": "cross-env NODE_ENV=test nyc mocha"
+    "cover": "cross-env NODE_ENV=test nyc mocha",
+    "coveralls": "npm run cover && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
@@ -53,6 +54,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
+    "coveralls": "^3.0.0",
     "cross-env": "^5.0.5",
     "mocha": "^3.5.3",
     "nyc": "^11.2.1",

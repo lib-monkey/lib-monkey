@@ -1,4 +1,7 @@
 # lib-monkey
+
+[![Travis](https://img.shields.io/travis/lib-monkey/lib-monkey.svg)](https://travis-ci.org/lib-monkey/lib-monkey) [![David](https://img.shields.io/david/lib-monkey/lib-monkey.svg)](https://david-dm.org/lib-monkey/lib-monkey) [![npm](https://img.shields.io/npm/v/lib-monkey.svg)](https://www.npmjs.com/package/lib-monkey)
+
 Monkey Testing for libraries
 
 When there is a need to test code with random values
@@ -79,7 +82,7 @@ Currently there are the following jokers:
  - bool, char, float, int, letter, natural, string
  - date, hammertime, timestamp, timezone
  - paragraph, sentence, syllable, word
- - pick (from array), array (of jokers), map, object (deep map)
+ - pick (from array), array (of jokers), map, object (deep map), typed (of specific type)
 
 
 ## ```Runners```
