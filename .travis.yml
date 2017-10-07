@@ -5,16 +5,19 @@ cache: node_modules
 
 node_js:
   - stable
-  
-install:
+
+before_install:
   - npm install
-after_success:
+install:
+  - npm run build
+
+script:
   - npm run coveralls
 
 deploy:
   provider: npm
   email: d.dodzin@gmail.com
   api_key:
-    secure: gAkRCJ8q5atTCXphWV0lPdvPDsj0jgzgOombH5OVxBCPnXkck1O9rO8RAC1yIvfsyALi6MmFIHLxa+Ihpul9Txnap2W169RGCUqNMJenHub9Q1gw1GPu/pQALTB4eX+pb0PewIkQgUivNcpq4bVuDelJbhLzOjytc74Oq/g68+yVgcvmYW8qbeOaiyqmSjdxj4pJqwRIr3gOD9g6bEQmBHQFbbCj/dci4MpS8+1d1Y/eUHaxSQ175hHHDgZ8sLj/pCOzB1CQm82UVW8GT+lsciMrfG+v+IZPT1dipOBgnmw5M2jFXx8zWbDi+kcqYRcTS/A9Ut0LBXel1X/V+ZaLNTUXYKJtb0MVJOCZNBu+5ls+N3TBNP81Yh+3Paz89FCO2SUIEBAop51/hMOAJ9HB2z5cxYdhLjtIalJ/fbFV3qa4/zwr+/75EAmy0HZs/koUHdSBxdJ9r6HQZIKdFYJaKq1E/05/m0ZH4CrEljjqUGRMQjNXun3U2Y1vkbiHEEFZSUPdd354Qhk9qvVZflSlwHkLCKN02B9rIOZ9F22VoDk1eCX4/TKpGt16wPrMxbY88AJdPWRzS6cokQgGkam3L123b0SfMQFYDsKqjJO0KNFXlBfC/fKvXF8Pvni3ixCvsLdnLTqoNoCVnURFVEEheXZ1Dm/R9h7TSb8OUCZxFx8=
+    secure: C5me7IvPlBn4EbP9U6heMZxFKC6WCE5X6zB2mOvoWbHUDBggIxLT6E/8rOvEYSlXCBrgMxR8R7kN33QVBVxi6+PtCW+pKGH3OwpaW1kh1+x4sxzdfOAR8ahp9aDqdU8EnzGCDGhK9VZ4yEi5Z6zEt5aDvII3sWWmfjDVxmQOwji8nQxzehCh6zHrOp1h6FUtkGGvmM4hY8uMLXutqsDdid3MgJrloQuNBC4x5migRUgSPYMTcZ8FvrwDhMnLv1yS0aArafaNPZp3fsq/0NGdlxH7h5kZYbcJB2/DfhWj2H4gb8CDcZHcERMVeDHBjV7niLIfpEYeVa1BbhzGSFNFGupPfji6jDVWtYmw0Cx4xhlGw1TlDMEKdDxJN6aJ2cwpKeo9uGxWxZ7DtWbecp39c8yUgmP+Pp57v6cutWxUrSsKAGjRsKdn4voHioaAsRVeE78vEoJDnEi8xNPDXrM7XEc00IOfBRNP6uMEaIqpoqktEG1/Gdhcvzte/j1ZpakEwRWn1myTxjxOwJuTQaEBx0Lds2fSAc/GouaBb3YvXnmgsTvecqJxgTASnXRP41re4R24C8CL8k4sHxYRmfpKTrQdsZCJwcXPLy5U/FHDB/xMWqk3uP0SJWOsRoSGl0ztRxNr0lPpx641ECInWj6rA08mVpzkIZ8mKDifgeWX3Zs=
   on:
     branch: master
