@@ -21,12 +21,21 @@ describe('PipedRunner', () => {
     expect(() => pnr.exec(0)).to.throw();
   });
 
-  it('Sync Pipe', () => {
-    let runable = { call: sinon.spy() };
+  it('Piped Execution', () => {
+    let runable = { call: sinon.stub().returns(new Promise((resolve) => resolve({ value: null }))) };
 
     let pnr = new PipedRunner(runable, runable);
 
-    return pnr.exec(200).should.be.fulfilled
+    return pnr.exec(200).should.eventually.be.fulfilled
+      .then(() => expect(runable.call.callCount).to.equal(400));
+  });
+
+  it('Parallel Piped Execution', () => {
+    let runable = { call: sinon.stub().returns(new Promise((resolve) => resolve({ value: null }))) };
+
+    let pnr = new PipedRunner(runable, runable);
+
+    return pnr.exec(200, 10).should.eventually.be.fulfilled
       .then(() => expect(runable.call.callCount).to.equal(400));
   });
 
