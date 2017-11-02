@@ -7,10 +7,12 @@
     "lib-monkey": "./bin/lib-monkey"
   },
   "scripts": {
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist docs",
     "prebuild": "npm run clean",
-    "build": "babel lib --out-dir dist",
     "test": "mocha --compilers js:babel-core/register",
+    "build": "npm run build-babel && npm run build-docs",
+    "build-babel": "babel lib --out-dir dist",
+    "build-docs": "jsdoc -c .jsdocrc -d ./docs/ -r",
     "cover": "cross-env NODE_ENV=test nyc mocha",
     "coveralls": "npm run cover && cat ./coverage/lcov.info | coveralls"
   },
@@ -56,6 +58,7 @@
     "chai-as-promised": "^7.1.1",
     "coveralls": "^3.0.0",
     "cross-env": "^5.0.5",
+    "jsdoc": "^3.5.5",
     "mocha": "^3.5.3",
     "nyc": "^11.2.1",
     "sinon": "^4.0.0"
