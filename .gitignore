@@ -60,3 +60,7 @@ typings/
 
 # Dist Folder for the library
 dist
+
+
+# Local docs - moved to doclet see https://doclets.io/lib-monkey/lib-monkey
+docs
