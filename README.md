@@ -1,6 +1,6 @@
 # lib-monkey
 
-[![Travis](https://img.shields.io/travis/lib-monkey/lib-monkey.svg)](https://travis-ci.org/lib-monkey/lib-monkey) [![David](https://img.shields.io/david/lib-monkey/lib-monkey.svg)](https://david-dm.org/lib-monkey/lib-monkey) [![npm](https://img.shields.io/npm/v/lib-monkey.svg)](https://www.npmjs.com/package/lib-monkey)
+[![Travis](https://img.shields.io/travis/lib-monkey/lib-monkey.svg)](https://travis-ci.org/lib-monkey/lib-monkey) [![David](https://img.shields.io/david/lib-monkey/lib-monkey.svg)](https://david-dm.org/lib-monkey/lib-monkey) [![Dependency Status](https://dependencyci.com/github/lib-monkey/lib-monkey/badge)](https://dependencyci.com/github/lib-monkey/lib-monkey) [![npm](https://img.shields.io/npm/v/lib-monkey.svg)](https://www.npmjs.com/package/lib-monkey) [![API Doc](https://doclets.io/lib-monkey/lib-monkey/dev.svg)](https://doclets.io/lib-monkey/lib-monkey/dev)
 
 Monkey Testing for libraries
 
@@ -110,10 +110,11 @@ FunctionRunner is designed to run a single function multipe times while the Pipe
 ## Roadmap
 This project should co-exist with all the avialbe test runners like mocha or jasmin and be used as a tool for random value testing
 
-- [ ] Add more Jokers and Runners
+- [x] Add more Jokers and Runners
 - [ ] Add self assertion api
+- [ ] Finish the docs
 - [ ] Create code coverage for the library
-- [ ] Maybe change the api to be dot chainable
+- [x] Maybe change the api to be dot chainable
 
 
 ## License

@@ -60,5 +60,8 @@ typings/
 # UnCompiled Code from lib
 lib
 
+# docs
+docs
+
 # package-lock
 package-lock.json
