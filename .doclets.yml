@@ -1,0 +1,13 @@
+
+dir: lib
+files:
+  - index.js
+
+packageJson: package.json
+
+articles:
+  - Overview: DOCS.md
+
+branches:
+  - master
+  - dev
