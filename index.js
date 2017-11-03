@@ -10,7 +10,6 @@ monkey.RunnerCreator.create(lm);
 
 /**
  * Lib-Monky.
- * @module lib-monkey
  * @autor Team of Monkeys
  * @property {Jokers.BooleanJoker} bool - return instance of the BooleanJoker
  * @property {Jokers.CharJoker} char - return instance of the CharJoker
