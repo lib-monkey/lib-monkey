@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: lib/common/joker.js</title>
+    <title>JSDoc: Source: lib/creators/joker.factory.creator.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: lib/common/joker.js</h1>
+    <h1 class="page-title">Source: lib/creators/joker.factory.creator.js</h1>
 
     
 
@@ -26,78 +26,42 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>
-const mNullable = Symbol('nullable');
-const mRandomiser = Symbol('randomiser');
-const mOptions = Symbol('options');
-
-/**
- * Base Class for all jokers.
+            <pre class="prettyprint source linenums"><code>/**
+ * @namespace Jokers
  */
-class Joker {
-  /**
-   * Create the Joker
-   * @param {chacne} randomiser - Chance's randomiser.
-   * @param {object} options - preconfigured options for the Joker
-   */
-  constructor(randomiser, options={}) {
+ 
+import * as BasicJokers from '../jokers/basic';
+import * as TextJokers from '../jokers/text';
+import * as DateJokers from '../jokers/date';
+import * as MultiJokers from "../jokers/multi";
+
+const mRandomiser = Symbol('randomiser');
+
+export default class JokerFactoryGenerator {
+
+  constructor(randomiser) {
     Object.assign(this, { 
-      [mRandomiser]: randomiser, 
-      [mOptions]: options, 
-      [mNullable]: 0
-    });
-
-    this._createModyfierFunctions();
-  }
-
-  _createModyfierFunctions(){
-    this.modifiers.forEach(modifier => {
-      this[modifier] = (value => {
-        this[mOptions][modifier] = value;
-        return this;
-      });
+      [mRandomiser]: randomiser
     });
   }
 
-  get randomiser() {
-    return this[mRandomiser];
+  _setupGetters(obj, jokers) {
+    Object.keys(jokers)
+      .map(className => jokers[className])
+      .forEach(JokerClass => 
+        Object.defineProperty(obj, JokerClass.name, {
+          get: () => new JokerClass(this[mRandomiser])
+        })
+      );
   }
 
-  get options() {
-    return this[mOptions];
+  create(obj){
+    this._setupGetters(obj, BasicJokers);
+    this._setupGetters(obj, TextJokers);
+    this._setupGetters(obj, DateJokers);
+    this._setupGetters(obj, MultiJokers);
   }
-
-  get modifiers(){
-    return [];
-  }
-
-  get value() {
-    return this.randomiser.bool({ likelihood: this[mNullable] }) ? null : this.getValue();
-  }
-
-  getValue() {
-    return this.toString();
-  }
-
-  /**
-   * Sets wether the joker value will be nullable or not
-   * @param {(number|bool)} value - defaults to 50 if true or null
-   * @return {Joker} self
-   */
-  nullable(value=true) {
-    if(!value){
-      this[mNullable] = 0;
-    } else if (value &amp;&amp; ( value === true || isNaN(value) )){
-      this[mNullable] = 50;
-    } else {
-      this[mNullable] = value;
-    }
-    return this;
-  }
-  
-}
-
-export default Joker;</code></pre>
+}</code></pre>
         </article>
     </section>
 

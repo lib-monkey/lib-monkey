@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Joker</title>
+    <title>JSDoc: Class: SentenceJoker</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Joker</h1>
+    <h1 class="page-title">Class: SentenceJoker</h1>
 
     
 
@@ -28,9 +28,8 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>Joker<span class="signature">(randomiser, options)</span><span class="type-signature"></span></h2>
-        
-            <div class="class-description">Base Class for all jokers.</div>
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="Jokers.html">Jokers</a>.</span>SentenceJoker<span class="signature">()</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -41,11 +40,9 @@
         
 
     
-    <h2>Constructor</h2>
-    
 
     
-    <h4 class="name" id="Joker"><span class="type-signature"></span>new Joker<span class="signature">(randomiser, options)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="SentenceJoker"><span class="type-signature"></span>new SentenceJoker<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -53,7 +50,7 @@
 
 
 <div class="description">
-    Create the Joker
+    Sentence Joker
 </div>
 
 
@@ -62,78 +59,6 @@
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>randomiser</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">chacne</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Chance's randomiser.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">preconfigured options for the Joker</td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -169,7 +94,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lib_common_joker.js.html">lib/common/joker.js</a>, <a href="lib_common_joker.js.html#line9">line 9</a>
+        <a href="lib_jokers_text.js.html">lib/jokers/text.js</a>, <a href="lib_jokers_text.js.html#line31">line 31</a>
     </li></ul></dd>
     
 
@@ -199,6 +124,17 @@
 
     
     </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="Joker.html">Joker</a></li>
+    </ul>
+
 
     
 
@@ -313,6 +249,11 @@
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Joker.html#nullable">Joker#nullable</a>
+    </li></ul></dd>
+    
 
     
 
@@ -336,6 +277,163 @@
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="lib_common_joker.js.html">lib/common/joker.js</a>, <a href="lib_common_joker.js.html#line59">line 59</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    self
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Joker.html">Joker</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="sentences"><span class="type-signature"></span>sentences<span class="signature">(value)</span><span class="type-signature"> &rarr; {<a href="Joker.html">Joker</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Sets amount of words in the sentence
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lib_jokers_text.js.html">lib/jokers/text.js</a>, <a href="lib_jokers_text.js.html#line37">line 37</a>
     </li></ul></dd>
     
 

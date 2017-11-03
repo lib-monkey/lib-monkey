@@ -42,6 +42,75 @@
 
 
 
+    <section>
+        <article><h1>lib-monkey</h1><p><a href="https://travis-ci.org/lib-monkey/lib-monkey"><img src="https://img.shields.io/travis/lib-monkey/lib-monkey.svg" alt="Travis"></a> <a href="https://david-dm.org/lib-monkey/lib-monkey"><img src="https://img.shields.io/david/lib-monkey/lib-monkey.svg" alt="David"></a> <a href="https://dependencyci.com/github/lib-monkey/lib-monkey"><img src="https://dependencyci.com/github/lib-monkey/lib-monkey/badge" alt="Dependency Status"></a> <a href="https://www.npmjs.com/package/lib-monkey"><img src="https://img.shields.io/npm/v/lib-monkey.svg" alt="npm"></a></p>
+<p>Monkey Testing for libraries</p>
+<p>When there is a need to test code with random values</p>
+<h2>Installation</h2><pre class="prettyprint source lang-bash"><code>  npm install lib-monkey</code></pre><h3>cli</h3><pre class="prettyprint source lang-bash"><code>  npm install -g lib-monkey
+
+
+  lib-monkey -s [seed] [CMD]</code></pre><h2>Getting Started</h2><p>There are multiple jokers and runners to use for the library but the basic idea is to send the joker to one of the runners to know where to put the random value</p>
+<pre class="prettyprint source lang-javascript"><code>
+const monkey = require('lib-monkey');
+
+monkey
+  .fnr
+  .params(monkey.int.min(0).max(10))
+  .register(a => {
+
+      // Do some tests with a as ranom value
+      // Will accept sync or prommise based results
+
+  })
+  .exec(n_times, concurrency)
+  .then(() => { // Passed })
+  .catch(err => { //There is an error })
+
+monkey
+  .fnr
+  .params(monkey.int.min(0).max(10))
+  .register((a, done) => {
+
+      // Do some tests with a as ranom value
+
+      // Call done after async tests
+
+  })
+  .exec(n_times, concurrency)
+  .then(() => { // Passed })
+  .catch(err => { //There is an error })</code></pre><h2><code>Jokers</code></h2><p>There are multipe jokers in library and they have multiple modifyers.</p>
+<p>There is the base modifyer <code>nullable(boolean|chance|null == true)</code> and all the other modifyers are based of of <a href="https://www.npmjs.com/package/chance">Chance</a> library</p>
+<h4>Example</h4><pre class="prettyprint source lang-javascript"><code>
+monkey.int.min(0).max(10) => chance.integer({ min:0, max: 10 })
+
+monkey.bool.likelihood(70) => chance.bool({ likelihood: 70 })</code></pre><p>Currently there are the following jokers:</p>
+<ul>
+<li>bool, char, float, int, letter, natural, string</li>
+<li>date, hammertime, timestamp, timezone</li>
+<li>paragraph, sentence, syllable, word</li>
+<li>pick (from array), array (of jokers), map, object (deep map), typed (of specific type)</li>
+</ul>
+<h2><code>Runners</code></h2><p>Currently there are two runners avialbe, <code>FunctionRunner - fnr</code> and <code>PipedRunner - pnr</code></p>
+<p>FunctionRunner is designed to run a single function multipe times while the PipedRunner is designed to run several function and piping the result from one to the other</p>
+<h4>Example</h4><pre class="prettyprint source lang-javascript"><code>
+  monkey
+    .pnr
+    .params(monkey.natural.max(10))
+    .register(num => num + 1)
+    .register(num => num + 1)
+    .register(num => num + 1)
+    .params(monkey.syllable)
+    .register((num, randomSylibalValue) => console.log('Will be the original num + 3', num, randomSylibalValue))
+    .exec(3)</code></pre><h2>Roadmap</h2><p>This project should co-exist with all the avialbe test runners like mocha or jasmin and be used as a tool for random value testing</p>
+<ul>
+<li>[x] Add more Jokers and Runners</li>
+<li>[ ] Add self assertion api</li>
+<li>[ ] Create code coverage for the library</li>
+<li>[x] Maybe change the api to be dot chainable</li>
+</ul>
+<h2>License</h2><p><a href="LICENSE">MIT</a> © <a href="https://github.com/lib-monkey">Lib Monkey Team</a></p></article>
+    </section>
+
 
 
 
@@ -50,13 +119,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-lib-monkey.html">lib-monkey</a></li></ul><h3>Classes</h3><ul><li><a href="BooleanJoker.html">BooleanJoker</a></li><li><a href="CharJoker.html">CharJoker</a></li><li><a href="FloatJoker.html">FloatJoker</a></li><li><a href="Joker.html">Joker</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-lib-monkey.html">lib-monkey</a></li></ul><h3>Classes</h3><ul><li><a href="Joker.html">Joker</a></li><li><a href="Jokers.BooleanJoker.html">BooleanJoker</a></li><li><a href="Jokers.CharJoker.html">CharJoker</a></li><li><a href="Jokers.FloatJoker.html">FloatJoker</a></li><li><a href="Jokers.IntegerJoker.html">IntegerJoker</a></li><li><a href="Jokers.LetterJoker.html">LetterJoker</a></li><li><a href="Jokers.NaturalJoker.html">NaturalJoker</a></li><li><a href="Jokers.ParagraphJoker.html">ParagraphJoker</a></li><li><a href="Jokers.SentenceJoker.html">SentenceJoker</a></li><li><a href="Jokers.StringJoker.html">StringJoker</a></li><li><a href="Jokers.SyllableJoker.html">SyllableJoker</a></li><li><a href="Jokers.WordJoker.html">WordJoker</a></li></ul><h3>Namespaces</h3><ul><li><a href="Jokers.html">Jokers</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Nov 03 2017 10:27:25 GMT+0200 (Jerusalem Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Nov 03 2017 19:09:46 GMT+0200 (Jerusalem Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
