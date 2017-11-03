@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: lib/common/joker.js</title>
+    <title>JSDoc: Source: lib/jokers/date.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: lib/common/joker.js</h1>
+    <h1 class="page-title">Source: lib/jokers/date.js</h1>
 
     
 
@@ -27,77 +27,86 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>
-const mNullable = Symbol('nullable');
-const mRandomiser = Symbol('randomiser');
-const mOptions = Symbol('options');
+import Joker from '../common/joker';
 
 /**
- * Base Class for all jokers.
+ * Date Joker, For more methods see {@link http://momentjs.com/|moment }
+ * @class Jokers.DateJoker
+ * @extends Joker
+ * @inheritdoc
  */
-class Joker {
-  /**
-   * Create the Joker
-   * @param {chacne} randomiser - Chance's randomiser.
-   * @param {object} options - preconfigured options for the Joker
-   */
-  constructor(randomiser, options={}) {
-    Object.assign(this, { 
-      [mRandomiser]: randomiser, 
-      [mOptions]: options, 
-      [mNullable]: 0
-    });
+ /**
+ * @name Jokers.DateJoker#string
+ * @function
+ * @memberof Jokers.DateJoker
+ * @description Sets if the value returns as string or Date
+ * @param {bool} value - Defaults to 'true'
+ * @returns {Joker} self
+ */
+export class DateJoker extends Joker {
 
-    this._createModyfierFunctions();
-  }
+  static get name(){ return 'date'; }
 
-  _createModyfierFunctions(){
-    this.modifiers.forEach(modifier => {
-      this[modifier] = (value => {
-        this[mOptions][modifier] = value;
-        return this;
-      });
-    });
-  }
-
-  get randomiser() {
-    return this[mRandomiser];
-  }
-
-  get options() {
-    return this[mOptions];
-  }
-
-  get modifiers(){
-    return [];
-  }
-
-  get value() {
-    return this.randomiser.bool({ likelihood: this[mNullable] }) ? null : this.getValue();
+  get modifiers() {
+    return ['string', 'american', 'year', 'month', 'day'];
   }
 
   getValue() {
-    return this.toString();
+    if(Object.keys(this.options).length > 0)
+      return this.randomiser.date(this.options);
+    else
+      return this.randomiser.date();
   }
 
-  /**
-   * Sets wether the joker value will be nullable or not
-   * @param {(number|bool)} value - defaults to 50 if true or null
-   * @return {Joker} self
-   */
-  nullable(value=true) {
-    if(!value){
-      this[mNullable] = 0;
-    } else if (value &amp;&amp; ( value === true || isNaN(value) )){
-      this[mNullable] = 50;
-    } else {
-      this[mNullable] = value;
-    }
-    return this;
-  }
-  
 }
 
-export default Joker;</code></pre>
+/**
+ * Hammertime Joker
+ * @class Jokers.HammertimeJoker
+ * @extends Joker
+ * @inheritdoc
+ */
+export class HammertimeJoker extends Joker {
+
+  static get name(){ return 'hammertime'; }
+
+  getValue() {
+    return this.randomiser.hammertime();
+  }
+
+}
+
+/**
+ * Timestamp Joker
+ * @class Jokers.TimestampJoker
+ * @extends Joker
+ * @inheritdoc
+ */
+export class TimestampJoker extends Joker {
+
+  static get name(){ return 'timestamp'; }
+
+  getValue() {
+    return this.randomiser.timestamp();
+  }
+
+}
+
+/**
+ * Timezone Joker
+ * @class Jokers.TimezoneJoker
+ * @extends Joker
+ * @inheritdoc
+ */
+export class TimezoneJoker extends Joker {
+
+  static get name(){ return 'timezone'; }
+
+  getValue() {
+    return this.randomiser.timezone();
+  }
+
+}</code></pre>
         </article>
     </section>
 

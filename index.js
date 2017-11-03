@@ -18,7 +18,11 @@ monkey.RunnerCreator.create(lm);
  * @property {Jokers.LetterJoker} letter - return instance of the LetterJoker
  * @property {Jokers.NaturalJoker} natural - return instance of the NaturalJoker
  * @property {Jokers.StringJoker} string - return instance of the StringJoker
- * @property {Jokers.ParagraphJoker} string - return instance of the ParagraphJoker
- * @property {Jokers.SentenceJoker} string - return instance of the SentenceJoker
+ * @property {Jokers.ParagraphJoker} paragraph - return instance of the ParagraphJoker
+ * @property {Jokers.SentenceJoker} sentence - return instance of the SentenceJoker
+ * @property {Jokers.DateJoker} date - return instance of the DateJoker
+ * @property {Jokers.HammertimeJoker} hammertime - return instance of the HammertimeJoker
+ * @property {Jokers.TimestampJoker} timestamp - return instance of the TimestampJoker
+ * @property {Jokers.TimezoneJoker} timezone - return instance of the TimezoneJoker
  */
 module.exports = lm;
