@@ -10,6 +10,7 @@ monkey.RunnerCreator.create(lm);
 
 /**
  * Lib-Monky.
+ * @module lib-monkey
  * @autor Team of Monkeys
  * @property {Jokers.BooleanJoker} bool - return instance of the BooleanJoker
  * @property {Jokers.CharJoker} char - return instance of the CharJoker
@@ -23,5 +24,10 @@ monkey.RunnerCreator.create(lm);
  * @property {Jokers.HammertimeJoker} hammertime - return instance of the HammertimeJoker
  * @property {Jokers.TimestampJoker} timestamp - return instance of the TimestampJoker
  * @property {Jokers.TimezoneJoker} timezone - return instance of the TimezoneJoker
+ * @property {Jokers.PickJoker} pick - return instance of the PickJoker
+ * @property {Jokers.ArrayJoker} array - return instance of the ArrayJoker
+ * @property {Jokers.MapJoker} map - return instance of the MapJoker
+ * @property {Jokers.ObjectJoker} object - return instance of the ObjectJoker
+ * @property {Jokers.TypedJoker} typed - return instance of the TypedJocker
  */
 module.exports = lm;
