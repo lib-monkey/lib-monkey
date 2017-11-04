@@ -10,38 +10,24 @@ var colors = require('colors/safe');
 
 program
   .version(pkg.version)
-  .usage('[options] <cmd ...>')
+  .usage('[options] <cmd>')
+  .option('--no-art', 'Don\'t print the monkey')
   .option('-s, --seed <n>', 'Seed', parseInt)
-  .parse(process.argv);
+  .action(function(cmd){
 
-if(program.seed){
-  process.env.LIB_MONKEY_SEED = program.seed;
-}
-
-executeComand(process.argv.splice(2));
-
-function executeComand(args) {
-  function isOption(value){
-    var result = false;
-    program.options.forEach(function(option) {
-      if(option.short === value || option.long === value){
-        result = true;
-      }
-    });
-    return result;
-  }
-
-  var command = '';
-
-  for(var i = 0; i < args.length; i++){
-    if(args[i][0] === '-' && isOption(args[i])){
-      i++;
-    } else {
-      command = args.splice(i);
-      break;
+    if(program.seed){
+      process.env.LIB_MONKEY_SEED = program.seed;
     }
-  }
 
-  if(command)
-    spawn(command[0], command.splice(1), { shell: true, stdio: "inherit" });
-}
+    if(!program.art) {
+      process.env.LIB_MONKEY_ART = 0;
+    }
+
+    let exec_index = process.argv.indexOf(cmd);
+
+    if(exec_index !== -1){
+      let command = process.argv.splice(exec_index);
+      spawn(command[0], command.splice(1), { shell: true, stdio: "inherit" });
+    }
+  })
+  .parse(process.argv);
