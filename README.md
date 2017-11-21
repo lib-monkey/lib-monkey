@@ -1,6 +1,6 @@
 # lib-monkey
 
-[![Travis](https://img.shields.io/travis/lib-monkey/lib-monkey.svg)](https://travis-ci.org/lib-monkey/lib-monkey) [![David](https://img.shields.io/david/lib-monkey/lib-monkey.svg)](https://david-dm.org/lib-monkey/lib-monkey) [![Dependency Status](https://dependencyci.com/github/lib-monkey/lib-monkey/badge)](https://dependencyci.com/github/lib-monkey/lib-monkey) [![npm](https://img.shields.io/npm/v/lib-monkey.svg)](https://www.npmjs.com/package/lib-monkey) [![API Doc](https://doclets.io/lib-monkey/lib-monkey/master.svg)](https://doclets.io/lib-monkey/lib-monkey/master/overview)
+[![Travis](https://img.shields.io/travis/lib-monkey/lib-monkey.svg)](https://travis-ci.org/lib-monkey/lib-monkey) [![David](https://img.shields.io/david/lib-monkey/lib-monkey.svg)](https://david-dm.org/lib-monkey/lib-monkey) [![Coveralls github](https://img.shields.io/coveralls/github/lib-monkey/lib-monkey.svg)](https://coveralls.io/github/lib-monkey/lib-monkey) [![Dependency Status](https://dependencyci.com/github/lib-monkey/lib-monkey/badge)](https://dependencyci.com/github/lib-monkey/lib-monkey) [![npm](https://img.shields.io/npm/v/lib-monkey.svg)](https://www.npmjs.com/package/lib-monkey) [![API Doc](https://doclets.io/lib-monkey/lib-monkey/master.svg)](https://doclets.io/lib-monkey/lib-monkey/master/overview)
 
 Monkey Testing for libraries
 

@@ -1,6 +1,6 @@
 {
   "name": "lib-monkey",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "description": "Random Integration Testing for NodeJS",
   "main": "index.js",
   "bin": {
@@ -58,6 +58,7 @@
     "chai-as-promised": "^7.1.1",
     "coveralls": "^3.0.0",
     "cross-env": "^5.0.5",
+    "joi": "^13.0.2",
     "jsdoc": "^3.5.5",
     "mocha": "^3.5.3",
     "nyc": "^11.2.1",
