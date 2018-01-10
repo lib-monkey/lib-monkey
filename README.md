@@ -18,8 +18,14 @@ When there is a need to test code with random values
 
 
   lib-monkey -s [seed] [CMD]
-```
 
+  lib-monkey -j [joker description]
+
+  
+  # example
+
+  lib-monkey -s 16012018 -j int.min(0).max(10) ===> 7
+```
 
 
 
