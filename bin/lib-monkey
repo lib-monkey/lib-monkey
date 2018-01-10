@@ -13,8 +13,8 @@ program
   .usage('[options] <cmd>')
   .option('--no-art', 'Don\'t print the monkey, still will leave the seed')
   .option('-q --quiet', 'No Stdout')
-  .option('-s, --seed <n>', 'Seed', parseInt)
-  .option('-j --joker', 'Value Of Joker')
+  .option('-s, --seed <n>', 'Seed to generate the randomiser (int)', parseInt)
+  .option('-j --joker', 'Evaluate joker instead of cmd (currently partial support)')
   .action(function(cmd){
 
     if(program.seed){
