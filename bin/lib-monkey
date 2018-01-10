@@ -11,8 +11,10 @@ var colors = require('colors/safe');
 program
   .version(pkg.version)
   .usage('[options] <cmd>')
-  .option('--no-art', 'Don\'t print the monkey')
-  .option('-s, --seed <n>', 'Seed', parseInt)
+  .option('--no-art', 'Don\'t print the monkey, still will leave the seed')
+  .option('-q --quiet', 'No Stdout')
+  .option('-s, --seed <n>', 'Seed to generate the randomiser (int)', parseInt)
+  .option('-j --joker', 'Evaluate joker instead of cmd (currently partial support)')
   .action(function(cmd){
 
     if(program.seed){
@@ -23,11 +25,47 @@ program
       process.env.LIB_MONKEY_ART = 0;
     }
 
-    let exec_index = process.argv.indexOf(cmd);
+    if(program.quiet) {
+      process.env.LIB_MONKEY_QUIET = 0;
+    }
 
-    if(exec_index !== -1){
-      let command = process.argv.splice(exec_index);
-      spawn(command[0], command.splice(1), { shell: true, stdio: "inherit" });
+    if(program.joker){
+      process.env.LIB_MONKEY_QUIET = 0;
+      var commands = cmd.split('.');
+      var joker_name = commands.splice(0, 1);
+
+      var joker = require('..')[joker_name];
+
+      if(!joker){
+        throw new Error('Joker "' + joker_name + '" dosen\'t exist')
+      }
+
+      commands.forEach(function(modif){
+        var results = /(\w*)\((\w*)\)/.exec(modif);
+        var modifier_name = results[1];
+        var modifier_value = results[2];
+
+        if(joker.modifiers.indexOf(modifier_name) !== -1){
+          try{
+            joker = joker[modifier_name](JSON.parse(modifier_value)) 
+          } catch(e) {
+            joker = joker[modifier_name](modifier_value)
+          }
+        } else {
+          throw new Error('Invalid Modifier for "' + joker.constructor.name + '"');
+        }
+      });
+
+      console.log(joker.value);
+    } else {
+
+      let exec_index = process.argv.indexOf(cmd);
+
+      if(exec_index !== -1){
+        let command = process.argv.splice(exec_index);
+        spawn(command[0], command.splice(1), { shell: true, stdio: "inherit" });
+      }
+
     }
   })
   .parse(process.argv);
