@@ -15,6 +15,7 @@ script:
   - npm run coveralls
 
 deploy:
+  skip_cleanup: true
   provider: npm
   email: d.dodzin@gmail.com
   api_key:
