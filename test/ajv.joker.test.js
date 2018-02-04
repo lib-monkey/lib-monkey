@@ -24,9 +24,12 @@ describe('Ajv Jokers', () => {
 
 		const ajv = new Ajv();
 
-		var valid = ajv.validate(schema, joker.value);
-		console.log(ajv.errors);
-		assert(valid, 'Schema validation failed: ' + ajv.errors.map(err => err.message).join(', '));
+		let v = joker.value;
+
+		console.log(v);
+		
+		const valid = ajv.validate(schema, v);
+		assert(valid, 'Schema validation failed: ' + (ajv.errors || []).map(err => err.message).join(', '));
 	});
 
 });
