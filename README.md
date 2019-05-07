@@ -6,28 +6,13 @@ Monkey Testing for libraries
 
 When there is a need to test code with random values
 
+Simply put is instead of using pre-determened variables inside test and creating stub data values, you define a sort of joker that can generate pseudo random values and use them through running the test multiple times you have a higher chance to test most of your edge cases.
+
 
 ## Installation
 ```bash
   npm install lib-monkey
 ```
-
-### cli
-```bash
-  npm install -g lib-monkey
-
-
-  lib-monkey -s [seed] [CMD]
-
-  lib-monkey -j [joker description]
-
-  
-  # example
-
-  lib-monkey -s 16012018 -j int.min(0).max(10) ===> 7
-```
-
-
 
 ## Getting Started
 
@@ -107,6 +92,25 @@ And this it will forward and enritch any assertion error that
     .catch(err => console.error(err) || process.exit(-1));
 
 ```
+
+## cli
+
+To easly re-run the test localy with specific seed or just to test something the library comes with a cli
+
+```bash
+  npm install -g lib-monkey
+
+
+  lib-monkey -s [seed] [CMD]
+
+  lib-monkey -j [joker description]
+
+  
+  # example
+
+  lib-monkey -s 16012018 -j int.min(0).max(10) ===> 7
+```
+
 
 ## Roadmap
 This project should co-exist with all the avialbe test runners like mocha or jasmin and be used as a tool for random value testing
