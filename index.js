@@ -5,8 +5,8 @@ let monkey = require('./dist/monkey');
 
 let lm = { };
 
+monkey.ApiCreator.create(lm);
 monkey.JokerCreator.create(lm);
-monkey.RunnerCreator.create(lm);
 
 /**
  * Lib-Monky.
