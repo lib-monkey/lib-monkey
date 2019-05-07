@@ -1,6 +1,6 @@
 {
   "name": "lib-monkey",
-  "version": "0.6.0-beta-rev4.1",
+  "version": "0.6.1",
   "description": "Random Integration Testing for NodeJS",
   "main": "index.js",
   "bin": {
