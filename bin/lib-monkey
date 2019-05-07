@@ -21,8 +21,8 @@ program
       process.env.LIB_MONKEY_SEED = program.seed;
     }
 
-    if(!program.art) {
-      process.env.LIB_MONKEY_ART = 0;
+    if(program.art) {
+      process.env.LIB_MONKEY_ART = 1;
     }
 
     if(program.quiet) {
