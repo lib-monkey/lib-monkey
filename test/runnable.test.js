@@ -18,32 +18,28 @@ describe('Runnable', () => {
 
   it('Calling', () => {
     let fn = sinon.spy();
-    let params = [1, 2, 3];
-    let runable = new Runable(fn, params);
+    let runable = new Runable(fn);
 
     runable.call().should.eventually.be.fulfilled
       .then(() => assert(fn.calledOnce));
   });
 
   it('Sync', () => {
-    let params = [11];
     let returnValue = "Working";
-    let fn = (value) => {
-      expect(value).to.equal(params[0]);
+    let fn = () => {
       return returnValue;
     };
 
-    let runable = new Runable(fn, params);
+    let runable = new Runable(fn);
     return runable.call().should.eventually.have.property('value', returnValue);
   });
 
   it('Sync fail', () => {
-    let params = [11];
     let fn = (value) => {
       expect(value).to.equal("something else");
     };
 
-    let runable = new Runable(fn, params);
+    let runable = new Runable(fn);
     return runable.call().should.eventually.be.rejected;
   });
 
@@ -103,57 +99,6 @@ describe('Runnable', () => {
     let runable = new Runable(fn);
     return runable.call()
       .should.eventually.have.property('value', someValue);
-  });
-
-  it('Extract Joker Params', () => {
-    let fakeChance = { bool: () => false };
-    let joker_value = 'Some Value';
-    let joker = new Joker(fakeChance);
-    sinon.stub(joker, 'getValue').returns(joker_value);
-
-    let params = [joker];
-    let fn = sinon.spy();
-
-    let runable = new Runable(fn, params);
-    return runable.call()
-      .should.eventually.be.fulfilled
-      .then(() => assert(fn.calledWith(joker_value), 'Joker value wasn\'t called'));
-  });
-
-  it('Extract Joker Params With Args', () => {
-    let jokerValue = 'Some Value';
-    let someValue = 'Some Value 2';
-    let fakeChance = { bool: () => false };
-    let joker = new Joker(fakeChance);
-    sinon.stub(joker, 'getValue').returns(jokerValue);
-
-    let params = [joker];
-    let fn = sinon.spy();
-
-    let runable = new Runable(fn, params);
-    return runable.call(someValue)
-      .should.eventually.be.fulfilled
-      .then(() => assert(fn.calledWith(someValue, jokerValue), 'Joker value wasn\'t called with the right params'));
-  });
-
-  it('Internal Error', () => {
-    let fakeChance = { bool: () => false };
-    let joker_value = 'Some Value';
-    let joker = new Joker(fakeChance);
-    sinon.stub(joker, 'getValue').throws(new Error('Hey'));
-
-    let params = [joker];
-
-    let runable = new Runable(() => {}, params);
-
-    let extend = { hey: 'ho' };
-
-    return runable.call(null, extend)
-      .should.eventually.be.rejected
-      .then(res => {
-        expect(res).to.nested.include({'err.message': 'Hey'});
-        expect(res.extend).to.deep.equal(extend);
-      });
   });
 
 });

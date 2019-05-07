@@ -9,7 +9,7 @@
   "scripts": {
     "clean": "rm -rf dist docs",
     "prebuild": "yarn clean",
-    "test": "mocha --require babel-core/register",
+    "test": "mocha --require @babel/register",
     "build": "yarn build-babel && yarn build-docs",
     "build-babel": "babel lib --out-dir dist",
     "build-docs": "jsdoc --readme DOCS.md -c .jsdocrc -d ./docs/ -r",

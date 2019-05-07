@@ -20,8 +20,8 @@ describe('Monkey', () => {
     const monkey = __requireUncached('../lib/monkey');
 
     expect(monkey).to.have.property('randomiser');
+    expect(monkey).to.have.property('ApiCreator');
     expect(monkey).to.have.property('JokerCreator');
-    expect(monkey).to.have.property('RunnerCreator');
   });
 
   it('Random Seed for Randmosizer', () => {

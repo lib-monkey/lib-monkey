@@ -6,8 +6,8 @@ import { expect, assert } from 'chai';
 import Joker from '../lib/common/joker';
 import Runner from '../lib/common/runner';
 
+import ApiFactoryGenerator from '../lib/creators/api.factory.creator';
 import JokerFactoryGenerator from '../lib/creators/joker.factory.creator';
-import RunnerFactoryGenerator from '../lib/creators/runner.factory.creator';
 
 const Randomizer = new Chance();
 
@@ -47,15 +47,15 @@ describe('Creators', () => {
 
     it('Init', () => {
 
-      expect(() => new RunnerFactoryGenerator()).to.not.throw();
-      expect(() => new RunnerFactoryGenerator(Randomizer)).to.not.throw();
+      expect(() => new ApiFactoryGenerator()).to.not.throw();
+      expect(() => new ApiFactoryGenerator(Randomizer)).to.not.throw();
 
     });
 
     it('Create will fill Runners', () => {
 
       let factory = {};
-      let jfg = new RunnerFactoryGenerator(Randomizer);
+      let jfg = new ApiFactoryGenerator(Randomizer);
 
       jfg.create(factory);
 
