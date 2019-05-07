@@ -1,19 +1,33 @@
 sudo: false
+
 language: node_js
 cache: yarn
+
 node_js:
 - stable
+
 before_install:
 - yarn
+
 install:
 - yarn build
+
 script:
 - yarn coveralls
+
 deploy:
-  skip_cleanup: true
-  provider: npm
-  email: d.dodzin@gmail.com
-  api_key:
-    secure: JVe2gMnGUMorn0mjfdo/IqIKJ8588RRs2qNMAWgcUbTAhrv3BDdlqpk6SYXoob1BsF9UDMkzJmEnMXTQDQQowrCAk5yledralWdie2mnnMOFOIL0cic8SOGLqO1Km4ddp1lI+5Twk73wqK07T/884CwoxP0RV6NvT169u9rmVm6JcYalpTQN0FZGrkbuFqt9dcAxSDu72XRmcY8TZV4zwvZyZbAgfnmzCpBbcJVRRBhIZkHz7iyz/W8xB3TD2jJ7jR/zzm0AuU4wuRx9S8HT6oziWeLdS5ghHIx99EAshdV6AjlEkEgiNhx6d/8JCTnl+cuFQEUY/R3obaFKam2zknKj7091JtMasgMvlQnKkfYQWkwLer4S6zl9JauUzeJi9jOMBvY9Fo/rgHvaDeD3xvzR1dD2lmwEmODRjBVk5jEbgrB/wUPBD2CzDrVL8ZEgdzo+Db+UjaxUFTlgmAtaxNErtRofYmZWxEOCqFToPQReThlunK+bMZRr/VlzwTZxiuA7NXNqjXuLxum7LPOP/5ZBC8EdjbHVk/cdSmrLPItvwz5/ZkUe+9o6U006H+j6FcJtk+XAEmVhuQ08RwjFCJVUDnMMWqf5a0Y0PT9/qtXx16ONefSnu2/H4JrSeHHNwgrfUKdnIZOJaYhYM7MwitGFb4Bj4odwaF2Si4G6FrY=
-  on:
-    branch: master
+  - provider: npm
+    skip_cleanup: true
+    email: d.dodzin@gmail.com
+    api_key:
+      secure: JVe2gMnGUMorn0mjfdo/IqIKJ8588RRs2qNMAWgcUbTAhrv3BDdlqpk6SYXoob1BsF9UDMkzJmEnMXTQDQQowrCAk5yledralWdie2mnnMOFOIL0cic8SOGLqO1Km4ddp1lI+5Twk73wqK07T/884CwoxP0RV6NvT169u9rmVm6JcYalpTQN0FZGrkbuFqt9dcAxSDu72XRmcY8TZV4zwvZyZbAgfnmzCpBbcJVRRBhIZkHz7iyz/W8xB3TD2jJ7jR/zzm0AuU4wuRx9S8HT6oziWeLdS5ghHIx99EAshdV6AjlEkEgiNhx6d/8JCTnl+cuFQEUY/R3obaFKam2zknKj7091JtMasgMvlQnKkfYQWkwLer4S6zl9JauUzeJi9jOMBvY9Fo/rgHvaDeD3xvzR1dD2lmwEmODRjBVk5jEbgrB/wUPBD2CzDrVL8ZEgdzo+Db+UjaxUFTlgmAtaxNErtRofYmZWxEOCqFToPQReThlunK+bMZRr/VlzwTZxiuA7NXNqjXuLxum7LPOP/5ZBC8EdjbHVk/cdSmrLPItvwz5/ZkUe+9o6U006H+j6FcJtk+XAEmVhuQ08RwjFCJVUDnMMWqf5a0Y0PT9/qtXx16ONefSnu2/H4JrSeHHNwgrfUKdnIZOJaYhYM7MwitGFb4Bj4odwaF2Si4G6FrY=
+    on:
+      branch: master
+  - provider: npm
+    skip_cleanup: true
+    tag: next
+    email: d.dodzin@gmail.com
+    api_key:
+      secure: JVe2gMnGUMorn0mjfdo/IqIKJ8588RRs2qNMAWgcUbTAhrv3BDdlqpk6SYXoob1BsF9UDMkzJmEnMXTQDQQowrCAk5yledralWdie2mnnMOFOIL0cic8SOGLqO1Km4ddp1lI+5Twk73wqK07T/884CwoxP0RV6NvT169u9rmVm6JcYalpTQN0FZGrkbuFqt9dcAxSDu72XRmcY8TZV4zwvZyZbAgfnmzCpBbcJVRRBhIZkHz7iyz/W8xB3TD2jJ7jR/zzm0AuU4wuRx9S8HT6oziWeLdS5ghHIx99EAshdV6AjlEkEgiNhx6d/8JCTnl+cuFQEUY/R3obaFKam2zknKj7091JtMasgMvlQnKkfYQWkwLer4S6zl9JauUzeJi9jOMBvY9Fo/rgHvaDeD3xvzR1dD2lmwEmODRjBVk5jEbgrB/wUPBD2CzDrVL8ZEgdzo+Db+UjaxUFTlgmAtaxNErtRofYmZWxEOCqFToPQReThlunK+bMZRr/VlzwTZxiuA7NXNqjXuLxum7LPOP/5ZBC8EdjbHVk/cdSmrLPItvwz5/ZkUe+9o6U006H+j6FcJtk+XAEmVhuQ08RwjFCJVUDnMMWqf5a0Y0PT9/qtXx16ONefSnu2/H4JrSeHHNwgrfUKdnIZOJaYhYM7MwitGFb4Bj4odwaF2Si4G6FrY=
+    on:
+      branch: next
