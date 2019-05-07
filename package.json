@@ -1,6 +1,6 @@
 {
   "name": "lib-monkey",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Random Integration Testing for NodeJS",
   "main": "index.js",
   "bin": {
@@ -9,7 +9,7 @@
   "scripts": {
     "clean": "rm -rf dist docs",
     "prebuild": "npm run clean",
-    "test": "mocha --compilers js:babel-core/register",
+    "test": "mocha --require babel-core/register",
     "build": "npm run build-babel && npm run build-docs",
     "build-babel": "babel lib --out-dir dist",
     "build-docs": "jsdoc --readme DOCS.md -c .jsdocrc -d ./docs/ -r",
@@ -50,7 +50,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
-    "babel-plugin-istanbul": "^4.1.5",
+    "babel-plugin-istanbul": "^5.1.4",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",
@@ -58,10 +58,10 @@
     "chai-as-promised": "^7.1.1",
     "coveralls": "^3.0.0",
     "cross-env": "^5.1.3",
-    "joi": "^13.1.0",
+    "joi": "^14.3.1",
     "jsdoc": "^3.5.5",
-    "mocha": "^3.5.3",
-    "nyc": "^11.4.1",
-    "sinon": "^4.1.3"
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.0",
+    "sinon": "^7.3.2"
   }
 }

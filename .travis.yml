@@ -1,18 +1,18 @@
 sudo: false
 
 language: node_js
-cache: node_modules
+cache: yarn
 
 node_js:
   - stable
 
 before_install:
-  - npm install
+  - yarn
 install:
-  - npm run build
+  - yarn build
 
 script:
-  - npm run coveralls
+  - yarn coveralls
 
 deploy:
   skip_cleanup: true
