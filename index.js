@@ -8,10 +8,24 @@ let lm = { };
 monkey.ApiCreator.create(lm);
 monkey.JokerCreator.create(lm);
 
+/** Description of the function
+    @name it
+    @function
+    @param {function} fn Call function
+    @param {object|null} context call context for {fn monkey.it.fn}
+*/
+/** Get value from joker
+    @name generate
+    @function
+    @param {Joker} joker The joker to generate
+*/
+
 /**
  * Lib-Monky.
  * @module lib-monkey
  * @autor Team of Monkeys
+ * @param {it} it The function to call twice
+ * @param {generate} generate The function to call twice
  * @property {Jokers.BooleanJoker} bool - return instance of the BooleanJoker
  * @property {Jokers.CharJoker} char - return instance of the CharJoker
  * @property {Jokers.FloatJoker} float - return instance of the FloatJoker

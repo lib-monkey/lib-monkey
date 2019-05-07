@@ -6,7 +6,7 @@ files:
 packageJson: package.json
 
 articles:
-  - Overview: DOCS.md
+  - Overview: README.md
 
 branches:
   - master
