@@ -8,13 +8,13 @@
   },
   "scripts": {
     "clean": "rm -rf dist docs",
-    "prebuild": "npm run clean",
+    "prebuild": "yarn clean",
     "test": "mocha --require babel-core/register",
-    "build": "npm run build-babel && npm run build-docs",
+    "build": "yarn build-babel && yarn build-docs",
     "build-babel": "babel lib --out-dir dist",
     "build-docs": "jsdoc --readme DOCS.md -c .jsdocrc -d ./docs/ -r",
     "cover": "cross-env NODE_ENV=test nyc mocha",
-    "coveralls": "npm run cover && cat ./coverage/lcov.info | coveralls"
+    "coveralls": "yarn cover && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
