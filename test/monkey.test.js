@@ -17,20 +17,20 @@ describe('Monkey', () => {
 
   it('Regular Initialisation', () => {
 
-    const monkey = __requireUncached('../lib/monkey');
+    const monkeyCreator = __requireUncached('../lib/monkey');
 
-    expect(monkey).to.have.property('randomiser');
-    expect(monkey).to.have.property('ApiCreator');
-    expect(monkey).to.have.property('JokerCreator');
+    expect(monkeyCreator).to.have.property('randomiser');
+    expect(monkeyCreator).to.have.property('ApiCreator');
+    expect(monkeyCreator).to.have.property('JokerCreator');
   });
 
   it('Random Seed for Randmosizer', () => {
 
     delete process.env.LIB_MONKEY_SEED;
 
-    const monkey = __requireUncached('../lib/monkey');
+    const monkeyCreator = __requireUncached('../lib/monkey');
 
-    expect(monkey.randomiser).to.be.instanceOf(Chance);
+    expect(monkeyCreator.randomiser).to.be.instanceOf(Chance);
   });
 
   it('Ready Seed for Randmosizer', () => {
@@ -41,9 +41,50 @@ describe('Monkey', () => {
 
     process.env.LIB_MONKEY_SEED = seed;
 
-    const monkey = __requireUncached('../lib/monkey');
+    const monkeyCreator = __requireUncached('../lib/monkey');
 
-    expect(monkey.randomiser.integer()).to.be.equal(testRandomiser.integer());
+    expect(monkeyCreator.randomiser.integer()).to.be.equal(testRandomiser.integer());
   });
+
+  it('Monkey Creation Flow', () => {
+    let monkey = { };
+
+    const { ApiCreator, JokerCreator } = __requireUncached('../lib/monkey');
+
+    ApiCreator.create(monkey);
+    JokerCreator.create(monkey);
+
+    expect(monkey).to.have.property('it');
+    expect(monkey).to.have.property('generate');
+  });
+
+  describe('Monkey Useage', () => {
+    let monkey = {};
+
+    before(() => {
+      const { ApiCreator, JokerCreator } = __requireUncached('../lib/monkey');
+
+      ApiCreator.create(monkey);
+      JokerCreator.create(monkey);
+    });
+
+    it('Generate Result', () => {
+      const value = monkey.generate(monkey.int.min(0).max(10));
+
+      expect(value).to.be.above(0);
+      expect(value).to.be.below(10);
+    });
+
+    it('Monkey Test', () => 
+      monkey.it(() => {
+        const value = monkey.generate(monkey.natural.max(10));
+
+        expect(value).to.be.above(0);
+        expect(value).to.be.below(10);
+      })
+        .do(5));
+
+
+  })
 
 });

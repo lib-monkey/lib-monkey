@@ -17,23 +17,30 @@ describe('Runner', () => {
   });
 
   it('Sync do', () => {
-
-    let runable = sinon.spy();
-
-    let fnr = new Runner(runable);
+    let runable_cb = sinon.spy();
+    let fnr = new Runner(runable_cb);
 
     return fnr.do(200).should.be.fulfilled
-      .then(() => expect(runable.callCount).to.equal(200));
+      .then(() => expect(runable_cb.callCount).to.equal(200));
   });
 
   it('Async do', () => {
-    let runable = sinon.stub().returns(Promise.resolve());
+    let runable_cb = sinon.stub().returns(Promise.resolve());
+    let fnr = new Runner(runable_cb);
+
+    return fnr.do(200, 10).should.be.fulfilled
+      .then(() => expect(runable_cb.callCount).to.equal(200));
+  });
+
+  it('Ready Runner', () => {
+    let runable_cb = sinon.stub();
+    let runable = new Runable(runable_cb);
 
     let fnr = new Runner(runable);
 
     return fnr.do(200, 10).should.be.fulfilled
-      .then(() => expect(runable.callCount).to.equal(200));
-  });
+      .then(() => expect(runable_cb.callCount).to.equal(200));
+  })
 
   it('Assertion Error', () => {
 
@@ -42,15 +49,37 @@ describe('Runner', () => {
       extend: { index: 0 }
     };
 
-    let runable = sinon.stub().returns(
+    let runable_cb = sinon.stub().returns(
       Promise.reject(rejectVaue)
     );
 
-    let fnr = new Runner(runable);
+    let fnr = new Runner(runable_cb);
 
     return fnr.do(1).should.be.rejected
       .then(err => {
-        expect(err.message).to.have.string(`Path: Runner(${rejectVaue.extend.index})`);
+        expect(err.message).to.have.string(`Runner [${rejectVaue.extend.index}]`);
+      });
+  });
+
+
+  it('Named Assertion Error', () => {
+
+    const runnerName = 'Foo Test';
+
+    let rejectVaue = {
+      err: new Error('Some Value'),
+      extend: { index: 0 }
+    };
+
+    let runable_cb = sinon.stub().returns(
+      Promise.reject(rejectVaue)
+    );
+
+    let fnr = new Runner(runnerName, runable_cb);
+
+    return fnr.do(1).should.be.rejected
+      .then(err => {
+        expect(err.message).to.have.string(`${runnerName} [${rejectVaue.extend.index}]`);
       });
   });
 

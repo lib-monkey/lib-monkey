@@ -11,6 +11,7 @@ import Runable from '../lib/common/runable';
 describe('Runnable', () => {
 
   it('Initialisation', () =>{
+    expect(() => new Runable()).to.throw();    
     expect(() => new Runable(sinon.spy())).to.not.throw();    
     expect(() => new Runable(sinon.spy(), [1, 2, 3])).to.not.throw();  
     expect(() => new Runable(sinon.spy(), [1, 2, 3], this)).to.not.throw();
@@ -24,6 +25,13 @@ describe('Runnable', () => {
       .then(() => assert(fn.calledOnce));
   });
 
+  it('Broken Call Fail', () => {
+    let fn = { call() { throw Error('lol') } };
+
+    let runable = new Runable(fn);
+    return runable.call().should.eventually.be.rejected;
+  });
+
   it('Sync', () => {
     let returnValue = "Working";
     let fn = () => {
@@ -35,8 +43,8 @@ describe('Runnable', () => {
   });
 
   it('Sync fail', () => {
-    let fn = (value) => {
-      expect(value).to.equal("something else");
+    let fn = () => {
+      expect('asd').to.equal("something else");
     };
 
     let runable = new Runable(fn);
